@@ -113,7 +113,7 @@ function performActionOnElement(element, manifest) {
     switch (manifest.selectedOperation) {
         case 0: 
             if (element.type == "surface") {
-                console.log("surface height "+element.baseHeight+" water height "+element.waterHeight+" clearance height "+element.clearanceHeight);
+                //console.log("surface height "+element.baseHeight+" water height "+element.waterHeight+" clearance height "+element.clearanceHeight);
                 if (manifest.selectedObjectClasses.indexOf("water") >= 0) {
                     element.waterHeight += manifest.selectedHeightChange * 8;
                 }
@@ -138,7 +138,7 @@ function performActionOnElement(element, manifest) {
 function performActionOnTile(tile, manifest) {
     for (i = tile.numElements - 1; i >= 0 ; i--) { // goes in reverse order in case the tile elements have to be deleted
         var element = tile.getElement(i);
-        console.log("made it to the " + i +"'th tile element", element.baseHeight,element.type);
+        //console.log("made it to the " + i +"'th tile element", element.baseHeight,element.type);
         if (element.baseHeight >= manifest.selectedMinBounds && element.baseHeight <= manifest.selectedMaxBounds) {
             if (manifest.selectedObjectClasses.indexOf(element.type) >= 0) {
                 performActionOnElement(element,manifest);
