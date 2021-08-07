@@ -108,7 +108,7 @@ function changeOperationType(newValue) {
 
 /* Perform the work */
 
-function performActionOnElement(element, manifest) {
+function performActionOnElement(element, manifest, tile,elementNum) {
     // meets min height, max height, and object type requirements
     switch (manifest.selectedOperation) {
         case 0: 
@@ -128,7 +128,7 @@ function performActionOnElement(element, manifest) {
             }
             break;
         case 1: 
-            tile.removeElement(i);
+            tile.removeElement(elementNum);
             break;
         default:
             break;
@@ -141,10 +141,10 @@ function performActionOnTile(tile, manifest) {
         //console.log("made it to the " + i +"'th tile element", element.baseHeight,element.type);
         if (element.baseHeight >= manifest.selectedMinBounds && element.baseHeight <= manifest.selectedMaxBounds) {
             if (manifest.selectedObjectClasses.indexOf(element.type) >= 0) {
-                performActionOnElement(element,manifest);
+                performActionOnElement(element,manifest,tile,i);
             }
             else if (manifest.selectedObjectClasses.indexOf("water") >= 0 && element.type == "surface") {
-                performActionOnElement(element,manifest);
+                performActionOnElement(element,manifest,tile,i);
             }
         }
     }
@@ -568,5 +568,6 @@ registerPlugin({
     version: '1.0',
     authors: ['Spacek'],
     type: 'remote',
+    license:'CC-SA 3.0',
     main: main
 });
